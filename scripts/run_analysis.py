@@ -660,7 +660,7 @@ def make_dashboard(aporte_anual, aporte_estrato, cumplimiento_loc, itcc, cuadran
         <ul>
           <li><span class="role">Perfil técnico en análisis y visualización de datos —</span> <b>Julio Esteban Fuentes Herrera</b></li>
           <li><span class="role">Perfil de análisis sectorial o de política pública —</span> <b>Juan Carlos Sanabria Medina</b></li>
-          <li><span class="role">Perfil complementario (temático, metodológico o técnico) —</span> <b>Diego Gonzalez Quiroga</b></li>
+          <li><span class="role">Perfil complementario (temático, metodológico o técnico) —</span> <b>Diego Armando Gonzalez Quiroga</b></li>
         </ul>
         <p class="meta">DATAJAM 2 — Dirección de Innovación Pública y Estado Abierto · Fuentes: Secretaría Distrital de Hacienda · Secretaría Distrital de Planeación (EM2021)</p>
       </footer>
