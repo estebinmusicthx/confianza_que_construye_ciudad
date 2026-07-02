@@ -628,7 +628,14 @@ def make_dashboard(aporte_anual, aporte_estrato, cumplimiento_loc, itcc, cuadran
         .review {{background:#eff6ff; border-left:6px solid #2563eb; padding:16px 18px; border-radius:10px; margin-top:12px; font-size:16px; line-height:1.5;}}
         .source {{font-size:12px; color:#4b5563; margin-top:10px;}}
         .closing {{background:#111827; color:white; margin:32px 0 0; padding: 42px 64px; font-size:22px; line-height:1.5;}}
-        @media (max-width: 900px) {{.kpis{{grid-template-columns:1fr; padding: 20px;}} .card{{margin:20px;}} header{{padding:30px 24px;}}}}
+        .credits {{background:#0b1220; color:#e5e7eb; padding: 34px 64px;}}
+        .credits h3 {{margin:0; font-size:18px;}}
+        .credits h3 span {{display:block; font-weight:400; color:#9ca3af; font-size:14px; margin-top:4px;}}
+        .credits ul {{list-style:none; margin:16px 0 0; padding:0; line-height:1.7; font-size:15px;}}
+        .credits li b {{color:#fff;}}
+        .credits li .role {{color:#9ca3af;}}
+        .credits .meta {{margin-top:16px; color:#9ca3af; font-size:13px;}}
+        @media (max-width: 900px) {{.kpis{{grid-template-columns:1fr; padding: 20px;}} .card{{margin:20px;}} header{{padding:30px 24px;}} .closing,.credits{{padding:26px 24px;}}}}
       </style>
     </head>
     <body>
@@ -648,6 +655,15 @@ def make_dashboard(aporte_anual, aporte_estrato, cumplimiento_loc, itcc, cuadran
         <p><b>No presentamos un tablero. Presentamos una forma de reconstruir confianza.</b></p>
         <p>Durante años hemos intentado convencer a la ciudadanía de aportar más. Tal vez la pregunta correcta era cuánto más puede explicar la ciudad. Porque la confianza no se decreta: se demuestra.</p>
       </div>
+      <footer class="credits">
+        <h3>Equipo: SOLUTIONSCITY <span>en representación de Caja de Vivienda Popular — CVP</span></h3>
+        <ul>
+          <li><span class="role">Perfil técnico en análisis y visualización de datos —</span> <b>Julio Esteban Fuentes Herrera</b></li>
+          <li><span class="role">Perfil de análisis sectorial o de política pública —</span> <b>Juan Carlos Sanabria Medina</b></li>
+          <li><span class="role">Perfil complementario (temático, metodológico o técnico) —</span> <b>Diego Gonzalez Quiroga</b></li>
+        </ul>
+        <p class="meta">DATAJAM 2 — Dirección de Innovación Pública y Estado Abierto · Fuentes: Secretaría Distrital de Hacienda · Secretaría Distrital de Planeación (EM2021)</p>
+      </footer>
     </body></html>
     """
     path = OUT_DIR / "dashboard_confianza_que_construye_ciudad.html"
