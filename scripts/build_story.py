@@ -291,17 +291,16 @@ footer{background:var(--dark); color:#e9e6e0; padding:56px 6vw 46px}
 .foot-inner{max-width:var(--maxw); margin:0 auto}
 .foot-inner h3{font-size:20px; font-weight:800}
 .foot-inner p{color:#b8b3ab; font-size:14px; max-width:70ch}
-.inst{margin:30px 0 0; padding:6px 0; display:flex; justify-content:center}
-.inst img{max-height:78px; width:auto}
-.foot-logos{display:flex; gap:22px; align-items:center; flex-wrap:wrap; margin-top:20px}
-.foot-logos img{height:46px}
+.foot-logos{margin-top:28px; display:flex; gap:34px; align-items:center; flex-wrap:wrap}
+.foot-logos img{height:44px; width:auto}
+.foot-logos .fl-inst{height:64px}
 .team{margin-top:32px; border-top:1px solid #3a3a36; padding-top:24px}
 .team h4{font-size:15px; font-weight:800; color:#fff; letter-spacing:.02em}
+.team h4 .rep{display:block; font-size:13px; font-weight:500; color:#b8b3ab; margin-top:4px}
 .team ul{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:10px}
 .team li{font-size:14px; color:#d7d2ca}
 .team li b{color:#fff; font-weight:700}
 .team li .role{color:#a49f97}
-.team li .pend{color:#8f8a82; font-style:italic}
 .foot-meta{margin-top:26px; font-size:12.5px; color:#8f8a82; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid #3a3a36; padding-top:18px}
 
 @media(max-width:820px){
@@ -454,17 +453,17 @@ footer{background:var(--dark); color:#e9e6e0; padding:56px 6vw 46px}
   <div class="foot-inner">
     <h3>Confianza que Construye Ciudad</h3>
     <p>Propuesta de uso y aprovechamiento de datos abiertos para fortalecer la cultura del aporte voluntario y la corresponsabilidad ciudadana en Bogot&aacute;. Presentada en DATAJAM 2.</p>
-    <div class="inst"><img src="__LOGO_INST__" alt="Pontificia Universidad Javeriana, Escuela Javeriana de Gobierno y &Eacute;tica P&uacute;blica, Observatorio de Gobierno y TIC, ideca"></div>
     <div class="foot-logos">
       <img src="__LOGO_DATOS__" alt="Datos para la transparencia">
       <img src="__LOGO_BOGOTA__" alt="Bogot&aacute; Mi Ciudad Mi Casa">
+      <img class="fl-inst" src="__LOGO_INST__" alt="Pontificia Universidad Javeriana, Escuela Javeriana de Gobierno y &Eacute;tica P&uacute;blica, Observatorio de Gobierno y TIC, ideca">
     </div>
     <div class="team">
-      <h4>Equipo: SOLUTIONSCITY</h4>
+      <h4>Equipo: SOLUTIONSCITY <span class="rep">en representaci&oacute;n de Caja de Vivienda Popular &mdash; CVP</span></h4>
       <ul>
-        <li><b>Julio Esteban Fuentes Herrera</b> <span class="role">&mdash; Perfil t&eacute;cnico en an&aacute;lisis y visualizaci&oacute;n de datos</span></li>
-        <li><b>Juan Carlos Sanabria Medina</b> <span class="role">&mdash; Perfil de an&aacute;lisis sectorial o de pol&iacute;tica p&uacute;blica</span></li>
-        <li><span class="pend">Perfil complementario (tem&aacute;tico, metodol&oacute;gico o t&eacute;cnico)</span></li>
+        <li><span class="role">Perfil t&eacute;cnico en an&aacute;lisis y visualizaci&oacute;n de datos &mdash;</span> <b>Julio Esteban Fuentes Herrera</b></li>
+        <li><span class="role">Perfil de an&aacute;lisis sectorial o de pol&iacute;tica p&uacute;blica &mdash;</span> <b>Juan Carlos Sanabria Medina</b></li>
+        <li><span class="role">Perfil complementario (tem&aacute;tico, metodol&oacute;gico o t&eacute;cnico) &mdash;</span> <b>Diego Fernando Guarin Marin</b></li>
       </ul>
     </div>
     <div class="foot-meta">
