@@ -43,14 +43,21 @@ Ver rutas exactas en `docs/fuentes_y_rutas.md` y `outputs/clean/fuentes_datos_ma
 ## 7. Estructura del repositorio
 
 ```text
+index.html                        # Historia visual (scrollytelling) — página publicada en GitHub Pages
+index_dashboard_original.html     # Respaldo del dashboard anterior
 /data                  # Datasets descargados manualmente si se requiere
 /notebooks             # Notebook reproducible de Colab
-/scripts               # Script Python principal
+/scripts               # run_analysis.py (pipeline de datos) y build_story.py (genera index.html)
 /outputs               # Visualizaciones y resultados generados
 /docs                  # Formulario, nota técnica, pitch, fuentes y metodología
 README.md
 requirements.txt
 ```
+
+> **Página publicada:** `index.html` es una historia visual de scrollytelling (Plotly, identidad roja
+> Alcaldía de Bogotá) que se **genera** con `python scripts/build_story.py` a partir de los CSV de
+> `outputs/clean/`. No editar `index.html` a mano; editar el script y regenerar.
+> URL: https://estebinmusicthx.github.io/confianza_que_construye_ciudad/
 
 ## 8. Cómo ejecutar
 
@@ -73,14 +80,24 @@ python scripts/run_analysis.py
 ```text
 outputs/dashboard_confianza_que_construye_ciudad.html
 outputs/resumen_hallazgos.md
+outputs/kpis.json
 outputs/clean/aporte_voluntario_anual.csv
 outputs/clean/aporte_voluntario_estrato.csv
+outputs/clean/aporte_voluntario_predial_limpio.csv
 outputs/clean/cumplimiento_predial_localidad.csv
 outputs/clean/itcc_localidad.csv
+outputs/clean/componentes_itcc.csv
 outputs/clean/cuadrantes_decision_publica.csv
 outputs/clean/brechas_trazabilidad.csv
+outputs/clean/presupuestos_participativos_avance_localidad.csv
+outputs/clean/presupuestos_participativos_presupuesto_localidad_sector.csv
 outputs/clean/fuentes_datos_manifest.csv
 ```
+
+> **Nota sobre el ITCC:** en la versión rápida (por defecto) el ITCC usa los mismos componentes
+> territoriales para las 20 localidades (pago oportuno + morosidad inversa), de modo que sean
+> comparables. El componente social de la Encuesta Multipropósito 2021 solo se incorpora si cubre
+> casi todas las localidades (`USAR_EM_COMPLETA=true`).
 
 ## 10. Cuidado metodológico
 
