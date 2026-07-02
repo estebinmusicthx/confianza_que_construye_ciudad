@@ -383,13 +383,13 @@ footer{background:var(--dark); color:#e9e6e0; padding:56px 6vw 46px}
   <section class="step">
     <span class="kicker"><span class="n">5</span> El &iacute;ndice</span>
     <h2>ITCC: un mapa de condiciones territoriales, no un ranking de buenos y malos</h2>
-    <p class="prose">El ITCC combina cumplimiento predial y un componente social de la Encuesta Multiprop&oacute;sito 2021 para resumir, en una escala de 0 a 100, qu&eacute; tan favorables son las condiciones de cada localidad para hablar de corresponsabilidad. En esta ejecuci&oacute;n, <b>Teusaquillo</b> encabeza las condiciones territoriales.</p>
+    <p class="prose">El ITCC resume, en una escala de 0 a 100, el comportamiento tributario territorial de cada localidad &mdash;pago oportuno y morosidad predial&mdash; usando los <b>mismos componentes para las 20 localidades</b>, de modo que sean comparables entre s&iacute;. En esta ejecuci&oacute;n, <b>Teusaquillo</b> encabeza las condiciones territoriales.</p>
     <div class="chart-card">
       <p class="chart-title">&Iacute;ndice Territorial de Confianza para la Corresponsabilidad por localidad</p>
       <div id="c_itcc" class="plot plot-tall"></div>
       <div class="meta">
         <div class="review"><b>Rese&ntilde;a estrat&eacute;gica:</b> El gr&aacute;fico no clasifica localidades como buenas o malas. Muestra d&oacute;nde existen condiciones m&aacute;s favorables &mdash;o m&aacute;s fr&aacute;giles&mdash; para la transparencia y la pedagog&iacute;a tributaria. El ITCC no mide confianza individual.</div>
-        <div class="source"><b>Fuente:</b> Construcci&oacute;n propia con Cumplimiento Impuesto Predial 2007&ndash;2023 y Encuesta Multiprop&oacute;sito 2021.</div>
+        <div class="source"><b>Fuente:</b> Construcci&oacute;n propia con Cumplimiento Impuesto Predial 2007&ndash;2023, Secretar&iacute;a Distrital de Hacienda. El componente social de la Encuesta Multiprop&oacute;sito 2021 queda como extensi&oacute;n documentada.</div>
       </div>
     </div>
   </section>

@@ -348,11 +348,27 @@ def build_itcc_from_em_adicionales(em_add: pd.DataFrame, cumplimiento_loc: pd.Da
     base["score_morosidad_inversa"] = minmax(base["tasa_morosidad"], invert=True)
     base["score_pago_promedio"] = minmax(base["pago_promedio_por_predio_obligado"])
     merged = base.merge(g[["CODIGO_LOCALIDAD", "itcc_em_adicionales"]], on="CODIGO_LOCALIDAD", how="left")
-    # Peso principal: condiciones tributarias territoriales + componente social si está disponible.
-    merged["ITCC"] = merged[["score_cumplimiento", "score_morosidad_inversa", "itcc_em_adicionales"]].mean(axis=1)
-    merged["version_itcc"] = "ITCC experimental: cumplimiento territorial + componente social EM2021 adicional"
+
+    # ITCC comparable: TODAS las localidades deben promediar exactamente los mismos
+    # componentes. El componente social EM2021 solo se incorpora si cubre (casi) todas
+    # las localidades; si su cobertura es parcial se excluye y se documenta, para no
+    # mezclar índices calculados con distinto número de componentes.
+    comp_base = ["score_cumplimiento", "score_morosidad_inversa"]
+    cobertura_em = merged["itcc_em_adicionales"].notna().mean()
+    if cobertura_em >= 0.9:
+        comp_itcc = comp_base + ["itcc_em_adicionales"]
+        version = ("ITCC experimental: cumplimiento territorial + morosidad inversa + "
+                   "componente social EM2021 (cobertura completa, componentes homogéneos)")
+    else:
+        comp_itcc = comp_base
+        version = ("ITCC experimental: cumplimiento territorial + morosidad inversa "
+                   "(componente social EM2021 excluido por cobertura parcial; componentes homogéneos)")
+    merged["componentes_itcc"] = ", ".join(comp_itcc)
+    merged["ITCC"] = merged[comp_itcc].mean(axis=1)
+    merged["version_itcc"] = version
     merged["limitacion_itcc"] = "No mide confianza individual; resume condiciones territoriales observables para orientar pedagogía y trazabilidad."
-    return merged.sort_values("ITCC", ascending=False), pd.DataFrame({"componente_usado": components})
+    componentes_out = pd.DataFrame({"componente_usado": comp_itcc, "cobertura_em2021": round(float(cobertura_em), 3)})
+    return merged.sort_values("ITCC", ascending=False), componentes_out
 
 def load_pp(url: str, resource_id: str) -> Optional[pd.DataFrame]:
     # Intentar por URL ODS; si falla, intentar API datastore.
@@ -745,10 +761,17 @@ def main():
     cumplimiento_loc = transform_cumplimiento(cumplimiento_raw)
 
     print("3/7 Cargando Encuesta Multipropósito / variables adicionales...")
-    try:
-        em_add = load_em_adicionales(sample=False)
-    except Exception as e:
-        print("No se pudo cargar variables adicionales completas; usando muestra vacía:", e)
+    # Versión rápida (por defecto): NO se descarga la EM2021 (archivo grande) y el ITCC
+    # queda con componentes territoriales homogéneos para las 20 localidades. Para intentar
+    # incorporar el componente social, exportar USAR_EM_COMPLETA=true antes de ejecutar.
+    if USAR_EM_COMPLETA:
+        try:
+            em_add = load_em_adicionales(sample=False)
+        except Exception as e:
+            print("No se pudo cargar variables adicionales completas; usando muestra vacía:", e)
+            em_add = pd.DataFrame()
+    else:
+        print("   (versión rápida: EM2021 omitida; ITCC territorial homogéneo)")
         em_add = pd.DataFrame()
 
     print("4/7 Construyendo ITCC experimental...")
@@ -758,10 +781,13 @@ def main():
         itcc = cumplimiento_loc.copy()
         itcc["score_cumplimiento"] = minmax(itcc["tasa_pago_oportuno"])
         itcc["score_morosidad_inversa"] = minmax(itcc["tasa_morosidad"], invert=True)
-        itcc["ITCC"] = itcc[["score_cumplimiento", "score_morosidad_inversa"]].mean(axis=1)
-        itcc["version_itcc"] = "ITCC mínimo: cumplimiento y morosidad predial"
-        itcc["limitacion_itcc"] = "No se cargó EM; se usa versión mínima reproducible."
-        componentes_itcc = pd.DataFrame({"componente_usado": ["score_cumplimiento", "score_morosidad_inversa"]})
+        comp_itcc = ["score_cumplimiento", "score_morosidad_inversa"]
+        itcc["componentes_itcc"] = ", ".join(comp_itcc)
+        itcc["ITCC"] = itcc[comp_itcc].mean(axis=1)
+        itcc["version_itcc"] = "ITCC territorial homogéneo: cumplimiento (pago oportuno) + morosidad inversa, iguales para las 20 localidades"
+        itcc["limitacion_itcc"] = "No mide confianza individual; resume condiciones territoriales observables. Componente social EM2021 no incorporado en esta ejecución."
+        itcc = itcc.sort_values("ITCC", ascending=False)
+        componentes_itcc = pd.DataFrame({"componente_usado": comp_itcc})
 
     print("5/7 Cargando presupuestos participativos...")
     pp_av, pp_pr = transform_pp()
