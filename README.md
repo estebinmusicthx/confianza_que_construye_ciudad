@@ -49,7 +49,7 @@ index_dashboard_original.html     # Respaldo del dashboard anterior
 /notebooks             # Notebook reproducible de Colab
 /scripts               # run_analysis.py (pipeline de datos) y build_story.py (genera index.html)
 /outputs               # Visualizaciones y resultados generados
-/docs                  # Formulario, nota técnica, pitch, fuentes y metodología
+/docs                  # Formulario de caracterización, nota técnica, fuentes y metodología
 README.md
 requirements.txt
 ```
